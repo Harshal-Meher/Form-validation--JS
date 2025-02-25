@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script type="text/javascript">
+    </script>
+</head>
+<style>
+    .loginform {
+        margin: 0 auto;
+        margin-top: 100px;
+        padding: 10px 10px;
+        border: 1px solid;
+        box-shadow: 5px 5px 15px 5px #ddd;
+    }
+</style>
+<script>
+
+    function validation() {
+        let email =document.getElementById("email").value;
+        let password =document.getElementById("password").value;
+
+        if(email.length === 0) {
+            alert("Please enter email");
+            document.getElementById('email').focus();
+            return false;
+        } else {
+            let atCount = email.split('@').length - 1;
+
+            if(atCount !== 1 || email.includes()){
+                alert('Not Valid');
+                return false;
+            }
+        }
+
+        if(password.length === 0) {
+            alert("Please enter passwoord");
+            document.getElementById('password').focus();
+            return false;
+        } else {
+            // if (password !== password.replace(/[^a-z]/g, '')) 
+            // {
+            //     alert("allow only charecter.");
+            //     return false;
+            // }
+            let cPassCharecter = password.replace(/[^a-zA-Z]/g, '');
+            let cPassNumber = password.replace(/[^0-9]/g, '');
+
+            if(password.length !== 6 || cPassCharecter.length !== 4 || cPassNumber.length !== 2) {
+                alert('Password must be 6 characters long with 4 letters and 2 numbers');
+                document.getElementById('password').focus();
+                return false;
+            } else {
+                alert("welcome to Login Page");
+                return true;
+            }
+
+        }
+
+       
+
+
+
+    }
+
+
+
+</script>
+<body>
+    <div class="container">
+        <form onsubmit="return validation()">
+            <table class="loginform">
+                <tr>
+                    <th>Login Form</th>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="" id="email" placeholder=" enter email"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="text" name="" id="password" placeholder=" enter password"></td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <button>Login</button>
+                        <a href="">ForgetPassword</a>
+                        <span>||</span>
+                        <a href="">Register</a>
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
